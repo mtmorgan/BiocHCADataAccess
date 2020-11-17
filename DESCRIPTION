@@ -1,16 +1,36 @@
 Package: BiocHCADataAccess
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Demonstrate Human Cell Atlas Data Access From R / Bioconductor
+Version: 0.0.1
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Martin",
+           family = "Morgan",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+           email = "mtmorgan.bioc@gmail.com",
+           comment = c(ORCID = "0000-0002-5874-8148"))
+Description: The Human Cell Atlas (HCA) provides public and restricted
+    access to a growing compendium of single cell sequence
+    data. BiocHCADataAccess demonstrates how single cell data is
+    represented in R / Bioconductor. The demonstration then
+    illustrates data can be accessed through the HCA web site, and
+    more programmatically using Bioconductor packages such as
+    HCAMatrixBrowser and HCAExplorer. Once represented in R /
+    Bioconductor, HCA data can be analysed using the very rich single
+    cell analysis tools outline in the online resource 'Orchestrating
+    Single Cell Analysis' in R / Bioconductor.
+License: Artisitic-2.0
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Depends: 
+    SingleCellExperiment,
+    LoomExperiment,
+    HCAMatrixBrowser,
+    HCAExplorer
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+Imports: 
+    TENxPBMCData,
+    dplyr

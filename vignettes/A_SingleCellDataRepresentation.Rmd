@@ -1,0 +1,74 @@
+---
+title: "Representing single cell data in R / Bioconductor"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Representing single cell data in R / Bioconductor}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  cache = TRUE
+)
+```
+
+```{r setup, echo = FALSE}
+library(SingleCellExperiment)
+library(TENxPBMCData)
+library(dplyr)
+```
+
+# The SingleCellExperiment
+
+```{r}
+library(SingleCellExperiment)
+```
+
+```{r}
+library(TENxPBMCData)
+```
+
+```{r data}
+sce <- TENxPBMCData("pbmc4k")
+sce
+```
+
+```{r}
+counts(sce)
+```
+
+```{r}
+mean(counts(sce) == 0)            # proportion of zeros
+hist(log10(colSums(counts(sce)))) # 'library size'
+```
+
+```{r}
+ridx <- rowSums(counts(sce)) > 0 # rows with non-zero counts
+sce[ridx,]                       # select rows, all columns
+```
+
+```{r}
+head(colData(sce), 3)
+head(rowData(sce), 3)
+```
+
+```{r}
+library(dplyr)
+```
+
+```{r}
+colData(sce) %>%
+    as_tibble()
+```
+
+Additional information in a `SingleCellExperiment`
+
+- Reduced dimension calculations
+
+# Other representations in R
+
+
+

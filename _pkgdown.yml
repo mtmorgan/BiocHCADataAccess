@@ -1,0 +1,15 @@
+url: https://mtmorgan.github.io/BiocHCADataAccess
+
+template:
+  params:
+    bootswatch: flatly
+
+home:
+  title: "Accessing Human Cell Atlas Data in R / Bioconductor"
+  type: inverse
+
+
+navbar:
+  right:
+   - icon: fa-github
+     href: https://github.com/mtmorgan/BiocHCADataAccess
