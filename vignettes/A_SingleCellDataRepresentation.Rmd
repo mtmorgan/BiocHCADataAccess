@@ -10,12 +10,11 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>",
   cache = TRUE
 )
 ```
 
-```{r setup, echo = FALSE}
+```{r setup, include = FALSE}
 library(SingleCellExperiment)
 library(TENxPBMCData)
 library(dplyr)
@@ -27,14 +26,23 @@ library(dplyr)
 library(SingleCellExperiment)
 ```
 
+# Example data
+
 ```{r}
 library(TENxPBMCData)
 ```
+
+- Another excellent resource for curated single-cell data sets -- [scRNAseq][].
+
+[TENxPBMCData]: https://bioconductor.org/packages/TENxPBMCData
+[scRNAseq]: https://bioconductor.org/packages/scRNAseq
 
 ```{r data}
 sce <- TENxPBMCData("pbmc4k")
 sce
 ```
+
+# Components of the SingleCellExperiment
 
 ```{r}
 counts(sce)

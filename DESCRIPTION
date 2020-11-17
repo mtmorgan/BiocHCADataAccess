@@ -26,11 +26,11 @@ Depends:
     SingleCellExperiment,
     LoomExperiment,
     HCAMatrixBrowser,
-    HCAExplorer
+    HCAExplorer,
+    TENxPBMCData,
+    dplyr,
+    BiocFileCache
 Suggests: 
     knitr,
     rmarkdown
 VignetteBuilder: knitr
-Imports: 
-    TENxPBMCData,
-    dplyr

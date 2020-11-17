@@ -1,8 +1,8 @@
 ---
-title: "B_HCADataDiscovery"
+title: "HCA Data Discovery"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{B_HCADataDiscovery}
+  %\VignetteIndexEntry{HCA Data Discovery}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -10,10 +10,82 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  cache = TRUE
 )
 ```
 
-```{r setup}
-library(BiocHCADataAccess)
+```{r setup, include = FALSE}
+library(SingleCellExperiment)
+library(LoomExperiment)
+library(dplyr)
+library(HCAMatrixBrowser)
 ```
+
+# The HCA Data Portal
+
+https://data.humancellatlas.org/explore
+
+E.g., [Assessing the relevance of organoids to model inter-individual variation][eg1].
+
+[eg1]: https://data.humancellatlas.org/explore/projects/005d611a-14d5-4fbf-846e-571a1f874f70
+
+Different ways to export data.
+
+- csv, mtx, loom.
+- Loom format is richest, with abundant metadata about cells and genes.
+
+# Data retrieval and import
+
+Retrieve the data
+
+- Use [BiocFileCache][] to retrieve once, for fast easy access the next time.
+
+```{r}
+url <- paste0(
+    "https://data.humancellatlas.org/project-assets/project-matrices/",
+    "005d611a-14d5-4fbf-846e-571a1f874f70.homo_sapiens.loom"
+)
+path <- BiocFileCache::bfcrpath(rnames = url)
+```
+
+Load the data using [LoomExperiment][]
+
+```{r}
+library(LoomExperiment)
+loom <- import(path)
+loom
+```
+
+Extensive row and column data annotations
+
+```{r}
+head(rowData(loom), 3)
+```
+
+```{r}
+library(dplyr)
+colData(loom) %>%
+    as_tibble()
+```
+
+Easily coerce to standard `SingleCellExperiment`...
+
+```{r}
+sce <- as(loom, "SingleCellExperiment")
+names(assays(sce)) <- "counts"
+sce
+```
+
+...ready for down-stream exploration and analysis.
+
+# Writing .loom files
+
+Use `export()` to create a loom file for sharing with others.
+
+```{r, eval = FALSE}
+my_loom <- tempfile(fileext =".loom")
+export(as(sce, "LoomExperiment"), my_loom)
+```
+
+[BiocFileCache]: https://bioconductor.org/packages/BiocFileCache
+[LoomExperiment]: https://bioconductor.org/packages/LoomExperiment

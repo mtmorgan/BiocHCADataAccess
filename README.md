@@ -15,18 +15,24 @@ Bioconductor data structures, opening the door for extensive
 downstream exploration, analysis, and visualization. This
 demonstration consists of the following sections.
 
-- Representing single cell data in R / Bioconductor -- the
+- [Part A][]: Representing single cell data in R / Bioconductor -- the
   [SingleCellExperiment][].
 
-- Web-based data discovery, download, and import using [HCAMatrixBrowser][].
+- [Part B][]: Web-based data discovery, download, and import using [HCAMatrixBrowser][].
 
-- Programmatic analysis using [HCAExplorer][].
+- [Part C][]: Programmatic analysis using [HCAExplorer][].
 
-- Integration with R / Bioconductor single cell workflows outlined in
+- [Part D][]: Integration with R / Bioconductor single cell workflows outlined in
   the online resource '[Orchestrating Single Cell Analysis with
   Bioconductor][OSCA]'.
 
-- Future developments.
+- [Part E][]: Future developments.
+
+[Part A]: articles/A_SingleCellDataRepresentation.html
+[Part B]: articles/B_HCADataDiscovery.html
+[Part C]: articles/C_ProgrammaticExploration.html
+[Part D]: articles/D_OSCA.html
+[Part E]: articles/E_Directions.html
 
 ### Instructors
 
