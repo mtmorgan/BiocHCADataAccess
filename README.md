@@ -18,20 +18,18 @@ demonstration consists of the following sections.
 - [Part A][]: Representing single cell data in R / Bioconductor -- the
   [SingleCellExperiment][].
 
-- [Part B][]: Web-based data discovery, download, and import using [HCAMatrixBrowser][].
+- [Part B][]: Web-based data discovery, download, and import [LoomExperiment][].
 
-- [Part C][]: Programmatic analysis using [HCAExplorer][].
+- [Part C][]: Programmatic data discovery and download using [HCAMatrixBrowser][].
 
-- [Part D][]: Integration with R / Bioconductor single cell workflows outlined in
-  the online resource '[Orchestrating Single Cell Analysis with
-  Bioconductor][OSCA]'.
+- [Part D][]: Diving deeper into data discovery using [HCAExplorer][].
 
 - [Part E][]: Future developments.
 
 [Part A]: articles/A_SingleCellDataRepresentation.html
 [Part B]: articles/B_HCADataDiscovery.html
-[Part C]: articles/C_ProgrammaticExploration.html
-[Part D]: articles/D_OSCA.html
+[Part C]: articles/C_HCAMatrixBrowser.html
+[Part D]: articles/D_HCAExplorer.html
 [Part E]: articles/E_Directions.html
 
 ### Instructors
