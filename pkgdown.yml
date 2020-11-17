@@ -1,6 +1,14 @@
-pandoc: 2.7.3
+pandoc: 2.10.1
 pkgdown: 1.6.1
 pkgdown_sha: ~
-articles: {}
-last_built: 2020-11-17T09:41Z
+articles:
+  A_SingleCellDataRepresentation: A_SingleCellDataRepresentation.html
+  B_HCADataDiscovery: B_HCADataDiscovery.html
+  C_HCAMatrixBrowser: C_HCAMatrixBrowser.html
+  D_HCAExplorer: D_HCAExplorer.html
+  E_Directions: E_Directions.html
+last_built: 2020-11-17T22:38Z
+urls:
+  reference: https://mtmorgan.github.io/BiocHCADataAccess/reference
+  article: https://mtmorgan.github.io/BiocHCADataAccess/articles
 

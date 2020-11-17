@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://mtmorgan.github.io/BiocHCADataAccess/index.html</loc>
+  </url>
+  <url>
+    <loc>https://mtmorgan.github.io/BiocHCADataAccess/articles/A_SingleCellDataRepresentation.html</loc>
+  </url>
+  <url>
+    <loc>https://mtmorgan.github.io/BiocHCADataAccess/articles/B_HCADataDiscovery.html</loc>
+  </url>
+  <url>
+    <loc>https://mtmorgan.github.io/BiocHCADataAccess/articles/C_HCAMatrixBrowser.html</loc>
+  </url>
+  <url>
+    <loc>https://mtmorgan.github.io/BiocHCADataAccess/articles/D_HCAExplorer.html</loc>
+  </url>
+  <url>
+    <loc>https://mtmorgan.github.io/BiocHCADataAccess/articles/E_Directions.html</loc>
+  </url>
+</urlset>
