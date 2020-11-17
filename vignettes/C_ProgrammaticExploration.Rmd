@@ -1,8 +1,8 @@
 ---
-title: "C_ProgrammaticExploration"
+title: "Programmatic exploration of HCA data"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{C_ProgrammaticExploration}
+  %\VignetteIndexEntry{Programmatic exploration of HCA data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -10,10 +10,153 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  cache = TRUE
 )
 ```
 
-```{r setup}
-library(BiocHCADataAccess)
+```{r setup, include = FALSE}
+library(HCAMatrixBrowser)
+```
+
+Objectives:
+
+- Explore HCA matrix data programmatically
+- Use the [HCAMatrixBrowser][] 'high level' interface to filter,
+  create, and retrieve a [LoomExperiment][] with a custom count matrix.
+- Introduce [HCAMatrixBrowser][] 'low level' operations for matrix retrieval.
+
+[HCAMatrixBrowser]: https://bioconductor.org/packages/HCAMatrixBrowser
+[LoomExperiment]: https://bioconductor.org/packages/LoomExperiment
+
+# The HCAMatrixBrowser package
+
+```{r}
+library(HCAMatrixBrowser)
+print(citation("HCAMatrixBrowser"), style = "text")
+```
+
+Built on the [HCA Matrix Service][] RESTful API.
+
+```{r}
+hca <- HCAMatrix()
+```
+
+- Create an object that references the service.
+
+[HCA Matrix Service]: https://matrix.data.humancellatlas.org/
+
+# 'High-level' use
+
+Discover available filters.
+
+```{r}
+filters <- available_filters(hca)
+length(filters)
+grep("project", filters, value = TRUE)
+```
+
+- Filters available on 43 different facets
+- The `project.project_core.project_title` filter corresponds to
+  titles on the matrix browser web page.
+
+Select a particular experiment
+
+```{r}
+title <- "Assessing the relevance of organoids to model inter-individual variation"
+hca1 <- filter(
+    hca,
+    project.project_core.project_title == title
+)
+filters(hca1) %>%
+    str()
+```
+
+Combine filters
+
+```{r}
+grep("detected", filters, value = TRUE)
+filter_detail(hca, "genes_detected") %>%
+    str()
+```
+
+- `genes_detected` can be used to filter only cells with more than 500
+  genes observed.
+- Combine with project selection.
+
+```
+hca1 <- filter(
+    hca,
+    project.project_core.project_title == title &
+    genes_detected >= 500
+)
+filters(hca1)
+```
+
+# Retrieve the custom selection of cells
+
+```
+> loom <- loadHCAMatrix(hca1, format = "loom")
+HCAMatrixBrowser cache directory set to:
+    /Users/ma38727/Library/Caches/org.R-project.R/R/HCAMatrixBrowser
+  (\) waiting for query completion.......... 00:00:02
+  (-) waiting for query completion.......... 00:00:06
+...
+  (/) waiting for query completion.......... 00:08:13
+  |======================================================================| 100%
+```
+
+- Matrix assembled by the service (remotely) 'on the fly'
+
+```
+> loom
+class: LoomExperiment 
+dim: 58347 43861 
+metadata(0):
+assays(1): matrix
+rownames: NULL
+rowData names(9): Accession Gene ... genus_species isgene
+colnames(43861): 0006d1a2669431b298d08f010da6480b
+  000f429f8f0c461ce9fe5a82b0375994 ... ffeb17d412dc2de0ac6e421f85eb15db
+  ffef9246733b290086fd66e084905567
+colData names(44): CellID analysis_protocol.protocol_core.protocol_id
+  ... specimen_from_organism.provenance.document_id total_umis
+rowGraphs(0): NULL
+colGraphs(0): NULL
+> range(colSums(assay(loom)[, 1:1000] > 0))
+[1] 502 4660
+```
+
+- The size of the experiment, compared to full version retrieved
+  earlier, and the range of genes per cell give us confidence that the
+  filters have been applied correctly.
+
+# 'Low-level' operations
+
+```{r}
+hca %>%
+    tags() %>%
+    dplyr::filter(tag == "v1") %>%
+    dplyr::select(operation)
+
+hca$matrix.lambdas.api.v1.core.post_matrix
+```
+
+- End-points exposed to the R user.
+- `matrix.lambdas.api.v1.core.post_matrix()` requests construction of
+  a customized count matrix, based on a series of filters, metadata
+  fields, etc.
+
+# Summary
+
+- [HCAMatrixBrowser][] allows programmatic access to the HCA Matrix
+  Service.
+- Both complete and data filtered to precise criteria can be
+  retrieved.
+- The full RESTful HCA Matrix Service API is available for further
+  customization.
+
+## Session info
+
+```{r}
+sessionInfo()
 ```

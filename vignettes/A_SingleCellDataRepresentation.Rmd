@@ -20,6 +20,15 @@ library(TENxPBMCData)
 library(dplyr)
 ```
 
+Objectives:
+
+- Introduce SingleCellExperiment, the central data representation for
+  single cell data in R / Bioconductor.
+- Explore the structure of SingleCellExperiment, and the basic
+  operations used to manipulate SingleCellExperiment.
+- Introduce downstream resources, and resources for converting bewteen
+  other single cell data representations.
+
 # The SingleCellExperiment
 
 ```{r}
@@ -44,39 +53,99 @@ sce
 
 # Components of the SingleCellExperiment
 
+The 'counts' matrix
+
 ```{r}
 counts(sce)
 ```
 
+- Gene (rows) by cell (columns) matrix of raw counts.
+- 'DelayedMatrix': on-disk representation, so very large data sets can
+  be represented and manipulated.
+  
+Essential manipulations
+
 ```{r}
 mean(counts(sce) == 0)            # proportion of zeros
+```
+
+- Proportion of 0's? Access the counts, determine whether each entry
+  in the matrix is a 'zero', and calculate the mean.
+
+```{r}
 hist(log10(colSums(counts(sce)))) # 'library size'
 ```
+ 
+- Distribution of 'library sizes'? Sum each column and draw a
+  histogram, using `log10()` transformed values.
+
+Annotation
+
+```{r}
+head(rowData(sce), 3)
+```
+
+- Rich possibilities for gene and cell annotation
+
+```{r}
+library(dplyr)
+colData(sce) %>%
+    as_tibble() %>%
+    head(3)
+```
+
+- Can play well enough with other analysis paradigms in R, e.g.,
+  tidyverse use of pipes and tibbles.
+
+Subsetting
 
 ```{r}
 ridx <- rowSums(counts(sce)) > 0 # rows with non-zero counts
 sce[ridx,]                       # select rows, all columns
 ```
 
-```{r}
-head(colData(sce), 3)
-head(rowData(sce), 3)
-```
-
-```{r}
-library(dplyr)
-```
-
-```{r}
-colData(sce) %>%
-    as_tibble()
-```
+- Coordinated row- and column- subsetting, using a 'matrix'-like metaphore.
+- For example, selecting only rows with non-zero counts in at least
+  one cell.
 
 Additional information in a `SingleCellExperiment`
 
 - Reduced dimension calculations
 
-# Other representations in R
+# What do do with a SingleCellExperiment?
+
+- Check out '[Orchestrating Single Cell Analysis with Bioconductor][OSCA]'!
+
+[OSCA]: https://bioconductor.org/books/3.12/OSCA
+
+# Other representations
+
+- [zelkonverter][] provides methods to convert between
+  SingleCellExperiment and Python's AnnData representation.
+- Converters bewtween R's [Seurat][] package are also available.
+
+[zelkonverter]: https://bioconductor.org/packages/zelkonverter
+[Suerat]: https://cran.r-project.org/package=Seurat
 
 
+# Summary
 
+- The [SingleCellExperiment][] is a central object for representing
+  single cell experiments (including very large experiments) in R /
+  Bioconductor.
+- SingleCellExperiment combines count matrices with annotations on
+  rows and columns, as well as derived measures such as dimensionality
+  reductions.
+- SingleCellExperiment can play well enough with other paradigms in R,
+  e.g., the `tibble` and tidyverse.
+- '[Orchestrating Single Cell Analysis with Bioconductor][OSCA]'
+  provides an amazing resource for opportunities for down-stream
+  analysis.
+- The SingleCellExperiment can be converted ot other popular formats,
+  for instance Python's AnnData.
+
+## Session info
+
+```{r}
+sessionInfo()
+```

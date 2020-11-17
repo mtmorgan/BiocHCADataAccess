@@ -21,11 +21,20 @@ library(dplyr)
 library(HCAMatrixBrowser)
 ```
 
+Objectives:
+
+- Explore the HCA data portal via web browser.
+- Download and import an example data matrix.
+- Illustrate essential operations on single cell data in R / Bioconductor.
+
 # The HCA Data Portal
 
-https://data.humancellatlas.org/explore
+The HCA [data portal][HCADataPortal]
 
-E.g., [Assessing the relevance of organoids to model inter-individual variation][eg1].
+- https://data.humancellatlas.org/explore
+
+- An example (chosen arbitrarily!): [Assessing the relevance of
+  organoids to model inter-individual variation][eg1].
 
 [eg1]: https://data.humancellatlas.org/explore/projects/005d611a-14d5-4fbf-846e-571a1f874f70
 
@@ -38,8 +47,6 @@ Different ways to export data.
 
 Retrieve the data
 
-- Use [BiocFileCache][] to retrieve once, for fast easy access the next time.
-
 ```{r}
 url <- paste0(
     "https://data.humancellatlas.org/project-assets/project-matrices/",
@@ -47,6 +54,8 @@ url <- paste0(
 )
 path <- BiocFileCache::bfcrpath(rnames = url)
 ```
+
+- Use [BiocFileCache][] to retrieve once, for fast easy access the next time.
 
 Load the data using [LoomExperiment][]
 
@@ -56,17 +65,50 @@ loom <- import(path)
 loom
 ```
 
+- A `LoomExperiment` is much like a `SummarizedExperiment`.
+- Transforms internal file-based representation of native `loom`
+  format to familiar R / Bioconductor structures.
+
+# Exploring single cell data
+
+Easy to sample and explore
+
+```{r}
+x0 <- as.matrix(assay(loom)[, 1:1000])
+library_size <- colSums(x0)
+non_zero_genes <- colSums(x0 > 0)
+```
+
+- Create a subset of data and represent as in-memory matrix.
+- 'Library size' as sum of counts in each column.
+- How many genes with non-zero expression in each cell? Determine
+  which counts are greater than 0 (`TRUE` or `FALSE`), sum the number
+  of `TRUE` in each column.
+
+```{r}
+plot(library_size ~ non_zero_genes, log = "xy")
+abline(v = 500)
+```
+
+- Bimodal distribution of cells make us appreciate need for quality
+  assessment, etc.
+
 Extensive row and column data annotations
 
 ```{r}
 head(rowData(loom), 3)
 ```
 
+- Annotations on genes from the HCA pipeline used in pre-processing.
+
 ```{r}
 library(dplyr)
 colData(loom) %>%
     as_tibble()
 ```
+
+- Very rich data cell-level data summarized by the HCA
+- Can be linked to even more annotation information!
 
 Easily coerce to standard `SingleCellExperiment`...
 
@@ -76,7 +118,7 @@ names(assays(sce)) <- "counts"
 sce
 ```
 
-...ready for down-stream exploration and analysis.
+- ...ready for down-stream exploration and analysis.
 
 # Writing .loom files
 
@@ -89,3 +131,21 @@ export(as(sce, "LoomExperiment"), my_loom)
 
 [BiocFileCache]: https://bioconductor.org/packages/BiocFileCache
 [LoomExperiment]: https://bioconductor.org/packages/LoomExperiment
+
+# Summary
+
+- Pre-computed data matrices are easy to discover from [HCA Data
+  Portal][HCADataPortal]
+- `.loom` format provides very rich row (gene) and column (cell)
+  annotations.
+- [LoomExperiment][] imports data into R in a memory-efficient manner
+- It is easy to integrate LoomExperiment objects into the rich R /
+  Bioconductor infrastructure for downstream analysis.
+  
+## Session info
+
+```{r}
+sessionInfo()
+```
+
+[HCADataPortal]: https://data.humancellatlas.org/explore

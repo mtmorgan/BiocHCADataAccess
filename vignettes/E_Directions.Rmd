@@ -1,8 +1,8 @@
 ---
-title: "E_Directions"
+title: "Directions"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{E_Directions}
+  %\VignetteIndexEntry{Directions}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -10,10 +10,44 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  cache = TRUE
 )
 ```
 
-```{r setup}
-library(BiocHCADataAccess)
-```
+# Changes to the Data Coordination Platform
+
+- [Big changes][] in availablility of services outlined here.
+- Improvements include availability of controlled access data.
+- We'll track these, with updates to the packages and work flows
+  outlined here.
+
+[Big changes]: https://data.humancellatlas.org/coming-soon-DCP-2-with-support-for-controlled-access-data
+
+# AnVIL and the Terra platform
+
+[AnVIL][] and [Terra][]
+
+- US NHGRI (Google) cloud-based computation and data access environment.
+- Fast access to large public and protected consortium-scale data.
+- Highly scalable computational workflows.
+- RStudio and Jupyter notebook environments
+
+HCA on Terra
+
+- Easily 'export' experiments to terra, including large files.
+- Files are exported as links.
+- Data does not leave the cloud.
+- Fast movement from storage to compute nodes.
+- No 'egress' charges.
+
+Bioconductor on Terra
+
+- Growing suite of workspaces highlighting Bioconductor packages,
+  workflows, and tutorials.
+- HCA examples available.
+- Early access? Contact [me][] with your Terra login email and ask to
+  be added to the Bioconductor\_User group.
+
+[AnVIL]: https://anvilproject.org
+[Terra]: https://app.terra.bio
+[me]: mailto:mtmorgan.bioc@gmail.com

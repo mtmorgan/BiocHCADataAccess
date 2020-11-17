@@ -1,8 +1,8 @@
 ---
-title: "D_OSCA"
+title: "Even more in-depth data discovery"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{D_OSCA}
+  %\VignetteIndexEntry{Even more in-depth data discovery}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -10,10 +10,83 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
-)
+  cache = TRUE
+  )
+library(HCAExplorer)
 ```
 
-```{r setup}
-library(BiocHCADataAccess)
+Objectives:
+
+- Use the [HCAExplorer][] package to identify fastq files for primary
+  analysis.
+
+[HCAExplorer]: https://bioconductor.org/packages/HCAExplorer
+
+# The HCAExplorer package
+
+```{r}
+library(HCAExplorer)
+print(citation("HCAExplorer"), style = "text")
 ```
+
+Built on the [HCA azul][] RESTful API.
+
+[HCA azul]: https://service.explore.data.humancellatlas.org 
+
+```{r}
+hca <- HCAExplorer()
+hca
+```
+
+# Filtering to a specific project
+
+Identify our favorite project and retrieve detailed metadata about it.
+
+```{r}
+title <- "Assessing the relevance of organoids to model inter-individual variation"
+hca %>%
+    filter(projectTitle %in% title) %>%
+    results() %>%
+    str()
+```
+
+# Obtaining a 'manifest' of fastq files.
+
+```{r}
+manifest <-
+    hca %>%
+    filter(projectTitle %in% title) %>%
+    getManifest(fileFormat = "fastq.gz")
+```
+
+- Manifest created by the service.
+
+```{r}
+colnames(manifest)
+```
+
+- Considerable information available about each file.
+
+```{r}
+manifest %>%
+    select(file_name, file_uuid) %>%
+    distinct()
+```
+
+- File names mapped to file UUIDs.
+- Files can be retrieved by UUID, e.g., using the HCA CLI (command
+  line interface).
+
+# Summary
+
+- [HCAExplorer][] provides more flexible, but also more complicated,
+  ways to explore the data
+- Enables tasks like identifying and downloading all FASTQ files
+  associated with a project.
+
+## Session info
+
+```{r}
+sessionInfo()
+```
+
