@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BiocHCADataAccess</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
       </span>
     </div>
 
@@ -66,7 +66,7 @@
       <a href="../articles/D_HCAExplorer.html">In-depth data discovery</a>
     </li>
     <li>
-      <a href="../articles/E_Directions.html">Directions</a>
+      <a href="../articles/E_Directions.html">Directions and Acknowledgments</a>
     </li>
   </ul>
 </li>
@@ -158,7 +158,7 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">title</span> <span class="op">&lt;-</span> <span class="st">"Assessing the relevance of organoids to model inter-individual variation"</span>
 <span class="va">hca</span> <span class="op">%&gt;%</span>
-    <span class="fu"><a href="https://rdrr.io/pkg/HCAMatrixBrowser/man/filtering.html">filter</a></span><span class="op">(</span><span class="va">projectTitle</span> <span class="op">%in%</span> <span class="va">title</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">projectTitle</span> <span class="op">%in%</span> <span class="va">title</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://rdrr.io/pkg/HCAExplorer/man/results.html">results</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">## tibble [1 × 46] (S3: tbl_df/tbl/data.frame)</span>
@@ -179,8 +179,8 @@
 <span class="co">##  $ samples.sampleEntityType             : chr "organoids"</span>
 <span class="co">##  $ samples.effectiveOrgan               : chr "brain"</span>
 <span class="co">##  $ samples.modelOrganPart               : chr "NULL"</span>
-<span class="co">##  $ samples.modelOrgan                   : chr "brain"</span>
 <span class="co">##  $ samples.id                           : chr "Org_HPSI0214i-kucg_2_1, Org_HPSI0214i-kucg_2_2, Org_HPSI0214i-kucg_2_3, Org_HPSI0214i-wibj_2_1, Org_HPSI0214i-w"| __truncated__</span>
+<span class="co">##  $ samples.modelOrgan                   : chr "brain"</span>
 <span class="co">##  $ specimens.id                         : chr "HPSI0214i-kucg_skin, HPSI0214i-wibj_skin, HPSI0314i-hoik_skin, HPSI0314i-sojd_skin"</span>
 <span class="co">##  $ specimens.organ                      : chr "skin of body"</span>
 <span class="co">##  $ specimens.organPart                  : chr "skin epidermis"</span>
@@ -215,9 +215,10 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">manifest</span> <span class="op">&lt;-</span>
     <span class="va">hca</span> <span class="op">%&gt;%</span>
-    <span class="fu"><a href="https://rdrr.io/pkg/HCAMatrixBrowser/man/filtering.html">filter</a></span><span class="op">(</span><span class="va">projectTitle</span> <span class="op">%in%</span> <span class="va">title</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">projectTitle</span> <span class="op">%in%</span> <span class="va">title</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://rdrr.io/pkg/HCAExplorer/man/getManifest.html">getManifest</a></span><span class="op">(</span>fileFormat <span class="op">=</span> <span class="st">"fastq.gz"</span><span class="op">)</span>
 <span class="co">## sleeping 1 seconds</span>
+<span class="co">## sleeping 4 seconds</span>
 <span class="co">## No encoding supplied: defaulting to UTF-8.</span>
 <span class="co">## </span>
 <span class="co">## ── Column specification ────────────────────────────────────────────────────────</span>
@@ -291,24 +292,24 @@
 <span class="co">## # A tibble: 18 x 2</span>
 <span class="co">##    file_name                                  file_uuid                         </span>
 <span class="co">##    &lt;chr&gt;                                      &lt;chr&gt;                             </span>
-<span class="co">##  1 GAC027_hOrg_HipSci_1_S5_L007_I1_001.fastq… c8e31b6a-ff6c-4a93-80a3-45ac2700f…</span>
-<span class="co">##  2 GAC027_hOrg_HipSci_1_S5_L008_R1_001.fastq… 9b93ead3-ee3a-47ea-a69a-0af6a316c…</span>
-<span class="co">##  3 GAC027_hOrg_HipSci_1_S5_L008_R2_001.fastq… c231df7c-2cbd-4aba-bfed-3f067416c…</span>
-<span class="co">##  4 GAC027_hOrg_HipSci_1_S5_L008_I1_001.fastq… 2e3516ac-a3e4-490a-bfda-06520ee22…</span>
-<span class="co">##  5 GAC027_hOrg_HipSci_2_S6_L007_I1_001.fastq… ba3c5206-ef33-4fc3-bbf4-23fb3a67c…</span>
-<span class="co">##  6 GAC027_hOrg_HipSci_2_S6_L007_R2_001.fastq… 4fae3cc3-eeb5-42d3-8323-7ea5c3ff9…</span>
-<span class="co">##  7 GAC027_hOrg_HipSci_1_S5_L007_R2_001.fastq… a00e5d23-3ddb-4d55-85b5-82dfaf5cb…</span>
-<span class="co">##  8 GAC027_hOrg_HipSci_1_S5_L007_R1_001.fastq… c8d30c50-8a9f-4976-9d82-20021525b…</span>
-<span class="co">##  9 GAC027_hOrg_HipSci_2_S6_L007_R1_001.fastq… 0b3a1085-53ab-464b-a135-512a8b6f8…</span>
-<span class="co">## 10 GAC027_hOrg_HipSci_3_S7_L007_I1_001.fastq… 2978f39c-708e-46a6-91d0-0b5813887…</span>
-<span class="co">## 11 GAC027_hOrg_HipSci_2_S6_L008_R2_001.fastq… 42efa3d8-9c97-489d-916f-47abb7919…</span>
-<span class="co">## 12 GAC027_hOrg_HipSci_3_S7_L007_R1_001.fastq… 37198fa9-7933-4438-8445-8f895e116…</span>
-<span class="co">## 13 GAC027_hOrg_HipSci_3_S7_L007_R2_001.fastq… f8e6fe23-e571-45cd-8a0e-c215bd5c9…</span>
-<span class="co">## 14 GAC027_hOrg_HipSci_2_S6_L008_R1_001.fastq… dd1cd137-5404-40c6-94e4-5b3b8b2b4…</span>
-<span class="co">## 15 GAC027_hOrg_HipSci_2_S6_L008_I1_001.fastq… 44806e72-70ab-4a8c-a568-26e9cda42…</span>
-<span class="co">## 16 GAC027_hOrg_HipSci_3_S7_L008_R1_001.fastq… 6b1ee7b3-11cf-4c14-947e-0a8ca7678…</span>
-<span class="co">## 17 GAC027_hOrg_HipSci_3_S7_L008_I1_001.fastq… 2b20ed1a-7bf9-4e4a-950e-f0bd8df96…</span>
-<span class="co">## 18 GAC027_hOrg_HipSci_3_S7_L008_R2_001.fastq… 9158d752-61a9-4307-9a57-560769586…</span></code></pre></div>
+<span class="co">##  1 GAC027_hOrg_HipSci_1_S5_L008_R1_001.fastq… 9b93ead3-ee3a-47ea-a69a-0af6a316c…</span>
+<span class="co">##  2 GAC027_hOrg_HipSci_1_S5_L008_R2_001.fastq… c231df7c-2cbd-4aba-bfed-3f067416c…</span>
+<span class="co">##  3 GAC027_hOrg_HipSci_1_S5_L008_I1_001.fastq… 2e3516ac-a3e4-490a-bfda-06520ee22…</span>
+<span class="co">##  4 GAC027_hOrg_HipSci_1_S5_L007_R1_001.fastq… c8d30c50-8a9f-4976-9d82-20021525b…</span>
+<span class="co">##  5 GAC027_hOrg_HipSci_1_S5_L007_R2_001.fastq… a00e5d23-3ddb-4d55-85b5-82dfaf5cb…</span>
+<span class="co">##  6 GAC027_hOrg_HipSci_3_S7_L007_I1_001.fastq… 2978f39c-708e-46a6-91d0-0b5813887…</span>
+<span class="co">##  7 GAC027_hOrg_HipSci_1_S5_L007_I1_001.fastq… c8e31b6a-ff6c-4a93-80a3-45ac2700f…</span>
+<span class="co">##  8 GAC027_hOrg_HipSci_2_S6_L007_R1_001.fastq… 0b3a1085-53ab-464b-a135-512a8b6f8…</span>
+<span class="co">##  9 GAC027_hOrg_HipSci_2_S6_L007_I1_001.fastq… ba3c5206-ef33-4fc3-bbf4-23fb3a67c…</span>
+<span class="co">## 10 GAC027_hOrg_HipSci_2_S6_L007_R2_001.fastq… 4fae3cc3-eeb5-42d3-8323-7ea5c3ff9…</span>
+<span class="co">## 11 GAC027_hOrg_HipSci_2_S6_L008_R1_001.fastq… dd1cd137-5404-40c6-94e4-5b3b8b2b4…</span>
+<span class="co">## 12 GAC027_hOrg_HipSci_2_S6_L008_I1_001.fastq… 44806e72-70ab-4a8c-a568-26e9cda42…</span>
+<span class="co">## 13 GAC027_hOrg_HipSci_3_S7_L008_R1_001.fastq… 6b1ee7b3-11cf-4c14-947e-0a8ca7678…</span>
+<span class="co">## 14 GAC027_hOrg_HipSci_2_S6_L008_R2_001.fastq… 42efa3d8-9c97-489d-916f-47abb7919…</span>
+<span class="co">## 15 GAC027_hOrg_HipSci_3_S7_L007_R1_001.fastq… 37198fa9-7933-4438-8445-8f895e116…</span>
+<span class="co">## 16 GAC027_hOrg_HipSci_3_S7_L007_R2_001.fastq… f8e6fe23-e571-45cd-8a0e-c215bd5c9…</span>
+<span class="co">## 17 GAC027_hOrg_HipSci_3_S7_L008_R2_001.fastq… 9158d752-61a9-4307-9a57-560769586…</span>
+<span class="co">## 18 GAC027_hOrg_HipSci_3_S7_L008_I1_001.fastq… 2b20ed1a-7bf9-4e4a-950e-f0bd8df96…</span></code></pre></div>
 <ul>
 <li>File names mapped to file UUIDs.</li>
 <li>Files can be retrieved by UUID, e.g., using the HCA CLI (command line interface).</li>
