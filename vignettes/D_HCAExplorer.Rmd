@@ -1,8 +1,8 @@
 ---
-title: "Even more in-depth data discovery"
+title: "In-depth data discovery"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Even more in-depth data discovery}
+  %\VignetteIndexEntry{In-depth data discovery}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

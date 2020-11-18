@@ -29,6 +29,10 @@ Objectives:
 
 # The HCA Data Portal
 
+```{r, echo = FALSE}
+knitr::include_graphics("images/hca-export.png")
+```
+
 The HCA [data portal][HCADataPortal]
 
 - https://data.humancellatlas.org/explore
@@ -37,6 +41,10 @@ The HCA [data portal][HCADataPortal]
   organoids to model inter-individual variation][eg1].
 
 [eg1]: https://data.humancellatlas.org/explore/projects/005d611a-14d5-4fbf-846e-571a1f874f70
+
+```{r, echo = FALSE}
+knitr::include_graphics("images/hca-loom-export.png")
+```
 
 Different ways to export data.
 

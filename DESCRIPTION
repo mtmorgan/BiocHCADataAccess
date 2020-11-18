@@ -1,6 +1,6 @@
 Package: BiocHCADataAccess
 Title: Demonstrate Human Cell Atlas Data Access From R / Bioconductor
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: 
     person(given = "Martin",
            family = "Morgan",

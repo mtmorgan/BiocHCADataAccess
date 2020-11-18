@@ -51,6 +51,10 @@ sce <- TENxPBMCData("pbmc4k")
 sce
 ```
 
+```{r, echo = FALSE}
+knitr::include_graphics("images/sce-1.png")
+```
+
 # Components of the SingleCellExperiment
 
 The 'counts' matrix

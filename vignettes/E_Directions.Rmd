@@ -34,11 +34,20 @@ knitr::opts_chunk$set(
 
 HCA on Terra
 
+```{r, echo = FALSE}
+knitr::include_graphics("images/hca-export.png")
+knitr::include_graphics("images/hca-terra-export.png")
+```
+
 - Easily 'export' experiments to terra, including large files.
 - Files are exported as links.
 - Data does not leave the cloud.
 - Fast movement from storage to compute nodes.
+- Workflows available within AnVIL, e.g., the [HCA Optimus Pipeline][].
 - No 'egress' charges.
+
+[HCA Optimus Pipeline]: https://anvil.terra.bio/#workspaces/featured-workspaces-hca/HCA_Optimus_Pipeline
+
 
 Bioconductor on Terra
 
