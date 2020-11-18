@@ -45,7 +45,7 @@ Identify our favorite project and retrieve detailed metadata about it.
 ```{r}
 title <- "Assessing the relevance of organoids to model inter-individual variation"
 hca %>%
-    filter(projectTitle %in% title) %>%
+    dplyr::filter(projectTitle %in% title) %>%
     results() %>%
     str()
 ```
@@ -55,7 +55,7 @@ hca %>%
 ```{r}
 manifest <-
     hca %>%
-    filter(projectTitle %in% title) %>%
+    dplyr::filter(projectTitle %in% title) %>%
     getManifest(fileFormat = "fastq.gz")
 ```
 

@@ -1,8 +1,8 @@
 ---
-title: "Directions"
+title: "Directions and Acknowledgments"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Directions}
+  %\VignetteIndexEntry{Direction and Acknowledgmentss}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -60,3 +60,30 @@ Bioconductor on Terra
 [AnVIL]: https://anvilproject.org
 [Terra]: https://app.terra.bio
 [me]: mailto:mtmorgan.bioc@gmail.com
+
+# Acknowledgments
+
+A portion of this work is supported by the Chan Zuckerberg Initiative
+DAF, an advised fund of Silicon Valley Community Foundation.
+
+Research reported in this presentation was supported by the NHGRI and
+NCI of the National Institutes of Health under award numbers
+U41HG004059, U24CA180996, and U24CA232979. The content is solely the
+responsibility of the authors and does not necessarily represent the
+official views of the National Institutes of Health.
+
+## Special thanks
+
+- Daniel van Twisk (LoomExperiment, HCAExplorer)
+- Marcel Ramos (HCAMatrixBrowser)
+
+## Bioconductor Seed Network PIs
+
+- Aedin Culhane (Dana-Farber)
+- Davide Risso (U Padova)
+- Greg Finak (Fred Hutch)
+- Kasper D Hansen (JHU)
+- Martin Morgan (Roswell)
+- Matt Ritchie (WEHI)
+- Stephanie Hicks (JHU)
+- Wolfgang Huber (EMBL)

@@ -83,7 +83,7 @@ filter_detail(hca, "genes_detected") %>%
   genes observed.
 - Combine with project selection.
 
-```
+```{r}
 hca1 <- filter(
     hca,
     project.project_core.project_title == title &
