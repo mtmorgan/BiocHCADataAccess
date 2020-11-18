@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BiocHCADataAccess</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
       </span>
     </div>
 
@@ -63,7 +63,7 @@
       <a href="../articles/C_HCAMatrixBrowser.html">Programmatic exploration of HCA data</a>
     </li>
     <li>
-      <a href="../articles/D_HCAExplorer.html">Even more in-depth data discovery</a>
+      <a href="../articles/D_HCAExplorer.html">In-depth data discovery</a>
     </li>
     <li>
       <a href="../articles/E_Directions.html">Directions</a>
@@ -139,6 +139,7 @@
 <span class="co">## colData names(11): Sample Barcode ... Individual Date_published</span>
 <span class="co">## reducedDimNames(0):</span>
 <span class="co">## altExpNames(0):</span></code></pre></div>
+<p><img src="images/sce-1.png" width="530"></p>
 </div>
 <div id="components-of-the-singlecellexperiment" class="section level1">
 <h1 class="hasAnchor">
@@ -184,7 +185,7 @@
 </ul>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SingleCellExperiment/man/assays.html">counts</a></span><span class="op">(</span><span class="va">sce</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="co"># 'library size'</span></code></pre></div>
-<p><img src="A_SingleCellDataRepresentation_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<p><img src="A_SingleCellDataRepresentation_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 <ul>
 <li>Distribution of ‘library sizes’? Sum each column and draw a histogram, using <code><a href="https://rdrr.io/r/base/Log.html">log10()</a></code> transformed values.</li>
 </ul>
@@ -331,9 +332,9 @@
 <span class="co">## [63] fastmap_1.0.1                 bit_4.0.4                    </span>
 <span class="co">## [65] rprojroot_1.3-2               ragg_0.4.0                   </span>
 <span class="co">## [67] desc_1.2.0                    stringi_1.5.3                </span>
-<span class="co">## [69] Rcpp_1.0.5                    vctrs_0.3.4                  </span>
-<span class="co">## [71] dbplyr_2.0.0                  tidyselect_1.1.0             </span>
-<span class="co">## [73] xfun_0.19</span></code></pre></div>
+<span class="co">## [69] Rcpp_1.0.5                    png_0.1-7                    </span>
+<span class="co">## [71] vctrs_0.3.4                   dbplyr_2.0.0                 </span>
+<span class="co">## [73] tidyselect_1.1.0              xfun_0.19</span></code></pre></div>
 </div>
 </div>
   </div>
